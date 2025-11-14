@@ -1,7 +1,7 @@
 # 🌦️ Weather Forecast Web App
 
 A clean and responsive weather dashboard that shows **current weather** and a **3-day forecast**, powered by the **OpenWeatherMap API**.  
-Live Demo: https://pateru-pavan-kumar.github.io/Weather-Forecast/
+Live Demo: https://pateru-pavan-kumar.github.io/Weather-Forecast-Web-App/
 
 ---
 
