@@ -1,0 +1,131 @@
+/* Custom CSS to enhance the Tailwind styling and add animations */
+
+/* --- General Styles --- */
+
+.weather-card {
+    min-width: 300px;
+    /* Apply a slight blur or transparency to let the background show through subtly */
+    background-color: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(5px); /* Requires browser support */
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.detail-box {
+    padding: 1rem;
+    background-color: #f7f9fb;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: background-color 0.2s;
+}
+
+.detail-box:hover {
+    background-color: #f1f3f6;
+}
+
+#tempDisplay {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* --- Dynamic Background Animations --- */
+
+/* Keyframes for animations */
+@keyframes cloud-move {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes rain-fall {
+    0% { transform: translateY(-100%); opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0.5; }
+}
+
+@keyframes sun-shine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+
+/* Default Background (Daytime Clear) */
+#background-container {
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); /* Clear Sky Blue */
+}
+
+/* --- NIGHT SPECIFIC STYLES --- */
+
+.night-bg #background-container {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); /* Dark Blue Night Sky */
+}
+
+.star-element {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 5s infinite ease-in-out;
+}
+
+/* --- CONDITION-SPECIFIC STYLES --- */
+
+/* 1. Rain/Drizzle Background */
+.rain-bg #background-container {
+    /* Day Rain */
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); 
+}
+.rain-bg.night-bg #background-container {
+    /* Night Rain - darker */
+    background: linear-gradient(135deg, #2c3e50 0%, #4a6a84 100%);
+}
+
+.rain-bg .rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: rain-fall 1s linear infinite;
+}
+
+/* 2. Clouds/Overcast Background */
+.cloudy-bg #background-container {
+    /* Day Clouds */
+    background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
+}
+.cloudy-bg.night-bg #background-container {
+    /* Night Clouds - darker */
+    background: linear-gradient(135deg, #515a63 0%, #87929a 100%);
+}
+
+.cloudy-bg .cloud-element {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 15px 0 -5px rgba(255, 255, 255, 0.6);
+    animation: cloud-move 40s linear infinite;
+}
+
+/* 3. Thunderstorm/Extreme Background */
+.storm-bg #background-container {
+    background: linear-gradient(135deg, #373b44 0%, #4286f4 100%); /* Dark Blue/Grey */
+}
+
+/* 4. Clear/Sun Background (Day only, night is handled by .night-bg) */
+.clear-bg .sun-element {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    background: #ffcc00;
+    border-radius: 50%;
+    box-shadow: 0 0 40px 10px #ffaa00;
+    animation: sun-shine 15s linear infinite;
+}
